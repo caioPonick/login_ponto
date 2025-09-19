@@ -9,6 +9,40 @@
 <body>
     <div class="container">
         <div class="box form-box">
+
+
+        <?php
+            include("php/config.php");
+            if(isset($_POST['submit'])){
+                $username = $_POST['username'];
+                $email = $_POST['email'];
+                $age = $_POST['age'];
+                $password = $_POST['password'];
+
+                $verify_query = mysqli_query($con, "SELECT email FROM users WHERE email='$email'");
+
+                if(mysqli_num_rows($verify_query) != 0){
+                    echo "<div class='message'>
+                            <p>This email is already registered. Try another one.</p>
+                          </div>
+                          <br>";
+                          echo "<a href='javascript:self.history.back()'><button class='btn'>Go Back</button></a>";
+                }
+                else{
+                    mysqli_query($con, "INSERT INTO users (Username, Email, Age, Password) VALUES ('$username', '$email', '$age', '$password')") or die("Couldn't connect");
+
+                    if(mysqli_num_rows($verify_query) != 0){
+                    echo "<div class='message'>
+                            <p>Registration successfully done!</p>
+                          </div>
+                          <br>";
+                          echo "<a href='index.php'><button class='btn'>Login Now</button></a>";
+                }
+                }
+            }
+        ?>
+
+
             <header>Sign Up</header>
             <form action="" method="post">
                 <div class="field input">
