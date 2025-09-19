@@ -36,7 +36,7 @@
                 </div>
 
                 <div class="links">
-                    Already a member? <a href="index.html">Sign In</a>
+                    Already a member? <a href="index.php">Sign In</a>
                 </div>
             </form>
         </div>
